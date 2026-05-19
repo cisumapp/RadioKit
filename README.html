@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RadioKit Documentation</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #38bdf8;
+            --accent: #818cf8;
+            --success: #4ade80;
+            --code-bg: #000000;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-bottom: 1px solid #334155;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            border-left: 4px solid var(--primary);
+            padding-left: 15px;
+            margin-bottom: 25px;
+            color: var(--primary);
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #334155;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--accent);
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            border: 1px solid #334155;
+            margin-bottom: 25px;
+        }
+
+        code {
+            font-family: 'Fira Code', 'Cascadia Code', monospace;
+            font-size: 0.95rem;
+        }
+
+        .token-keyword { color: #f472b6; }
+        .token-string { color: #4ade80; }
+        .token-comment { color: #64748b; }
+        .token-type { color: #38bdf8; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+
+        th {
+            background-color: #334155;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            border-top: 1px solid #334155;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: var(--primary);
+            color: var(--bg);
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>RadioKit 📻</h1>
+    <p class="subtitle">Unified Radio Streaming for Swift</p>
+</header>
+
+<div class="container">
+    <section>
+        <h2>Overview</h2>
+        <p><strong>RadioKit</strong> is a premium Swift package built for modern radio streaming applications. It abstracts the complexities of multiple radio APIs into a single, elegant interface.</p>
+        
+        <div class="card-grid">
+            <div class="card">
+                <h3>Unified</h3>
+                <p>One model, multiple sources. Search Radio Browser and Eclipse simultaneously.</p>
+            </div>
+            <div class="card">
+                <h3>Safe</h3>
+                <p>Actor-based architecture ensures thread-safety for state and networking.</p>
+            </div>
+            <div class="card">
+                <h3>Modern</h3>
+                <p>Strictly leverages Swift 6 concurrency, iOS 17+, and macOS 14+ features.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Quick Start</h2>
+        <p>Initialize the actor and start discovering stations in seconds.</p>
+<pre><code><span class="token-keyword">import</span> <span class="token-type">RadioKit</span>
+
+<span class="token-keyword">let</span> client = <span class="token-type">RadioClient</span>(userAgent: <span class="token-string">"MyRadioApp/1.0"</span>)
+
+<span class="token-comment">// Prepare the client</span>
+<span class="token-keyword">await</span> client.discoverServers()
+
+<span class="token-comment">// Search for stations</span>
+<span class="token-keyword">let</span> results = <span class="token-keyword">try await</span> client.search(query: <span class="token-string">"Jazz"</span>)</code></pre>
+    </section>
+
+    <section>
+        <h2>Unified Model</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Description</th>
+                    <th>Source</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>id</code></td>
+                    <td>Unique Identifier</td>
+                    <td>Both</td>
+                </tr>
+                <tr>
+                    <td><code>title</code></td>
+                    <td>Station/Track Name</td>
+                    <td>Both</td>
+                </tr>
+                <tr>
+                    <td><code>artworkURL</code></td>
+                    <td>Icon or Cover Art</td>
+                    <td>Both</td>
+                </tr>
+                <tr>
+                    <td><code>tags</code></td>
+                    <td>Genre Metadata</td>
+                    <td>Radio Browser</td>
+                </tr>
+                <tr>
+                    <td><code>artist</code></td>
+                    <td>Artist Name</td>
+                    <td>Eclipse</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Stream Resolution</h2>
+        <p>Convert API entries into direct streamable URLs for AVPlayer.</p>
+<pre><code><span class="token-keyword">if let</span> streamURL = <span class="token-keyword">try await</span> client.getStreamURL(for: station) {
+    <span class="token-comment">// Ready for playback</span>
+    player.play(streamURL)
+}</code></pre>
+    </section>
+
+    <footer>
+        <p>RadioKit &copy; 2026. Built with &hearts; for the Swift Community.</p>
+    </footer>
+</div>
+
+</body>
+</html>
