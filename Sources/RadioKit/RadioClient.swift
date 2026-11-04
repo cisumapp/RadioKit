@@ -1,5 +1,8 @@
 import Foundation
 
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 /// A unified client for interacting with Radio Browser and Eclipse Radio services.
 public actor RadioClient {
     private let session: URLSession
